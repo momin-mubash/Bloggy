@@ -1,3 +1,4 @@
+
 .header {
   background-color: #661a6e;
   color: white;
@@ -69,6 +70,25 @@
     flex: 1 1 100%; /* One card per row on mobile */
     max-width: 100%;
   }
+  .header {
+    padding: 0.8rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 2.0rem;
+  }
+
+  .header nav {
+    gap: 0.6rem; /* Reduce space between links */
+    font-size:0.8rem;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    flex-wrap: nowrap; /* Ensure all links stay in one line */
+  }
+
+  .header nav link{
+    font-size: 0.7rem; /* Reduce font size slightly */
+    padding: 0.3rem 0.5rem;
+  }
 }
 
 
@@ -95,4 +115,3 @@
 .editor-buttons button {
   flex: none; /* Ensures buttons do not take equal space */
 }
-
