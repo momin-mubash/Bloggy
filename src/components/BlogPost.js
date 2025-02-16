@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../firebase';
 
 const BlogPost = () => {
@@ -12,15 +12,18 @@ const BlogPost = () => {
     const fetchPost = async () => {
       const docRef = doc(firestore, 'posts', id);
       const docSnap = await getDoc(docRef);
-
+  
       if (docSnap.exists()) {
-        setPost({ id: docSnap.id, ...docSnap.data() });
+        const postData = { id: docSnap.id, ...docSnap.data() };
+        console.log("Fetched post data:", postData); // Debugging
+        setPost(postData);
       } else {
         console.log('No such document!');
       }
     };
     fetchPost();
   }, [id]);
+  
 
   return (
     <div>
@@ -28,6 +31,7 @@ const BlogPost = () => {
         <>
           <h1>{post.title}</h1>
           <p>{post.content}</p>
+          <p>Author: {post.author || "Unknown"}</p>
         </>
       ) : (
         <p>Loading...</p>
